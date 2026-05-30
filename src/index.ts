@@ -18,7 +18,7 @@ const newEvent4Date :Date = eventService.addDays(today, 100);
 const eventId4 :string = eventService.startEvent('Buli van de indul mindjárt', true, newEvent4Date);
 
 const newEvent5Date :Date = eventService.addDays(today, 30);
-const eventId5 :string = eventService.startEvent('Itt a nyár indul az eskövő', false, newEvent5Date);
+const eventId5 :string = eventService.startEvent('Itt a nyár indul az eskövő', true, newEvent5Date);
 
 console.debug(eventId1);
 console.debug(eventId2);
@@ -47,6 +47,7 @@ eventService.softMessageDelete(' fos ', eventId3);
 eventService.stopEvent(eventId3);
 eventService.printEventWithMessages(eventId3);
 
+eventService.privateEvent(eventId5);
 let eskuvoSzervezo :User = eventService.registerParticipant(eventId5, 'Eskövő szervező', 'eskuvo@eskuvo.com', '00-Esküvő-01', UserType.ORGANIZER);
 let eskuvoFeleseg :User = eventService.registerParticipant(eventId5, 'Eskövő feleség', 'szuper.feleseg@szuper.com', '00-Szuper-01', UserType.SPECIAL);
 let eskuvoFerj :User = eventService.registerParticipant(eventId5, 'Eskövő férj', 'szuper.ferj@szuper.com', '00-Szuper-02', UserType.SPECIAL);
