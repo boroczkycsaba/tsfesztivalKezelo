@@ -130,7 +130,7 @@ export class EventService {
     }
 
     public findParticipant(findedEvent: EventProgramme, participantName?: string, participantEmail?: string ): User {
-        return this._userService.findParticipant(findedEvent.participants);
+        return this._userService.findParticipant(findedEvent.participants, participantName, participantEmail);
     }
 
     public removeParticipant(eventId: string, participantName?: string, participantEmail?: string) :boolean {
