@@ -1,1 +1,1 @@
-# tsfesztivalKezelo
+# Fesztivál szervező program
