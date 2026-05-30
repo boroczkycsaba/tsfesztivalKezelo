@@ -54,6 +54,37 @@ export class EventService {
         }
     }
 
+    public findEventStartedDate(eventId: string) : Date {
+        try {
+            const findedEvent: EventProgramme = this.findEvent(eventId);
+            return findedEvent.startDate;
+        } catch (e) {
+            console.error(e);
+            throw e;
+        }
+    }
+
+
+    public isEventPublic(eventId: string) : boolean {
+        try {
+            const findedEvent: EventProgramme = this.findEvent(eventId);
+            return findedEvent.publicEvent;
+        } catch (e) {
+            console.error(e);
+            throw e;
+        }
+    }
+
+    public isEventOnGoing(eventId: string) : boolean {
+        try {
+            const findedEvent: EventProgramme = this.findEvent(eventId);
+            return !findedEvent.endDate;
+        } catch (e) {
+            console.error(e);
+            throw e;
+        }
+    }
+
     public stopEvent(eventId: string):boolean {
         try {
             const findedEvent: EventProgramme = this.findEvent(eventId);

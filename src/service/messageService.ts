@@ -8,7 +8,7 @@ export class MessageService {
 
     private messageCounter :number = 0;
 
-    addMessageText(messsageText: string,
+    public addMessageText(messsageText: string,
                    messages: Message[], user: User, publicMessage:boolean = true) {
         const messageId :string = "Üzenet " + ++this.messageCounter;
         const message = new Message(messageId, user, messsageText, publicMessage);
@@ -20,13 +20,13 @@ export class MessageService {
             let findedMessageIndex = -1;
             if (user) {
                 findedMessageIndex = messages.findIndex(
-                    messageFind => (messageFind.messsageText === messsageText && messageFind.user.userId === user.userId));
+                    messageFind => (!messageFind.archived && messageFind.messsageText === messsageText && messageFind.user.userId === user.userId));
             } else if (likeSearch) {
                 findedMessageIndex = messages.findIndex(
                     messageFind => (!messageFind.archived && messageFind.messsageText.indexOf(messsageText) > -1));
             } else {
                 findedMessageIndex = messages.findIndex(
-                    messageFind => (messageFind.messsageText === messsageText));
+                    messageFind => (!messageFind.archived && messageFind.messsageText === messsageText));
             }
             if (findedMessageIndex > -1) {
                 return findedMessageIndex;
