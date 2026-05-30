@@ -4,8 +4,17 @@ import {EventService} from "../src/service/eventService";
 
 describe('event test 1', () => {
     const eventService: EventService = new EventService();
+    const event1Id :string =eventService.startEvent('Esemény 1');
     test('Event id test', () => {
-        expect(eventService.startEvent('Esemény')).toBe('Esemény 1');
+        expect(event1Id).toBe('Esemény 1');
+    });
+    const event2Id :string =eventService.startEvent('Esemény 2');
+    test('Event id test', () => {
+        expect(event2Id).toBe('Esemény 2');
+    });
+    const event3Id :string =eventService.startEvent('Esemény 3');
+    test('Event id test', () => {
+        expect(event3Id).toBe('Esemény 3');
     });
 });
 
