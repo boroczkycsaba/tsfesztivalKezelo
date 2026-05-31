@@ -1,9 +1,10 @@
-import {Message} from "../models/messages";
+
 import {EventProgramme} from "../models/event";
 import {User} from "../models/user";
 import {UserService} from "./userService";
 import {MessageService} from "./messageService";
 import {UserType} from "../models/userType";
+import {CheckAllowDelete} from "../decorator/AdminRoleHelper";
 
 export class EventService {
 
@@ -101,7 +102,7 @@ export class EventService {
         this._messageService.addMessageText(messageTex, findedEvent.messages, user);
     }
 
-
+    @CheckAllowDelete('admin')
     public messageDelete(deleteMessageWithText:string, eventId: string, user: User):void {
         const findedEvent: EventProgramme = this.findEvent(eventId);
         this._messageService.hardDelete(deleteMessageWithText, findedEvent.messages, user);

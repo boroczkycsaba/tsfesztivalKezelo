@@ -1,5 +1,6 @@
 import {Message} from "../models/messages";
 import {User} from "../models/user";
+import {CheckAllowDelete} from "../decorator/AdminRoleHelper";
 import {MessageLogger} from "../decorator/LoggerHelper";
 
 export class MessageService {
@@ -8,6 +9,7 @@ export class MessageService {
 
     private messageCounter :number = 0;
 
+    @MessageLogger()
     public addMessageText(messsageText: string,
                    messages: Message[], user: User, publicMessage:boolean = true) {
         const messageId :string = "Üzenet " + ++this.messageCounter;
@@ -36,7 +38,7 @@ export class MessageService {
     }
 
 
-    @MessageLogger
+    @CheckAllowDelete('admin')
     hardDelete(messsageText: string, messages: Message[], user?: User) {
         try {
             let messageIndex :number = this.findMessageIndex(messsageText, messages, false, user);
@@ -46,7 +48,7 @@ export class MessageService {
         }
     }
 
-    @MessageLogger
+    @CheckAllowDelete('admin')
     softDelete(messsageText: string, messages: Message[], likeSearch:boolean = false, user?: User) {
         try {
             let messageIndex :number = this.findMessageIndex(messsageText, messages, likeSearch, user);
